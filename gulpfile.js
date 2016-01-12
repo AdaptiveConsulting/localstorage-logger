@@ -28,7 +28,7 @@ var PATHS = {
 var tsProject = ts.createProject('tsconfig.json', { 
   sortOutput: true,
   declaration: true,
-  outDir: PATHS.build,
+  outFile: 'LSL.merged.js',
   typescript: require('typescript')
 });
  
@@ -41,13 +41,6 @@ gulp.task('add', ['default'], function(){
   return gulp.src('.')
     .pipe(git.add({options: '-A'}));
 });
- 
-/**
- * Defintions files
- */
-gulp.task('definitions', shell.task([
-  'node scripts/dts-bundle.js'
-]));
  
 /**
  * Dev tasks
@@ -70,8 +63,8 @@ gulp.task('clean:tsd', function (cb) {
 
 gulp.task('scripts:dev', function() {
   var tsResult = gulp.src([
-      PATHS.src + '/**/*.ts'//,
-      //PATHS.test + '/**/*.ts'
+      PATHS.src + '/**/*.ts',
+      PATHS.test + '/**/*.ts'
     ], { base: "./" })
       .pipe(sourcemaps.init())
       .pipe(ts(tsProject));
@@ -160,7 +153,6 @@ gulp.task('default', function (cb) {
   runSequence(
     'ci',
     'scripts:prod',
-    'definitions',
     cb
   );
 });

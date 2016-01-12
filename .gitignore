@@ -8,3 +8,4 @@ lib/**/*.js
 test/**/*.js
 examples/**/*.js
 coverage
+*.swp

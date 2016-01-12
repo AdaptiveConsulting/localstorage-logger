@@ -1,1 +1,1 @@
-module.exports = require('./build/localstorage-logger');
+module.exports = require('./build/LSL.merged.js');

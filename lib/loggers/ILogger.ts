@@ -1,5 +1,12 @@
-import {LogLevel} from './LogLevel';
-
-export interface ILogger {
-  log(level: LogLevel, message: string);
+module LSL {
+  /**
+   * Interface for logging individual log entries.
+   */
+  export interface ILogger {
+    /**
+     * Logs a log entry.
+     * @param entry The log entry
+     */
+    log(entry: ILogEntry);
+  }
 }
