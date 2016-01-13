@@ -28,7 +28,7 @@ var PATHS = {
 var tsProject = ts.createProject('tsconfig.json', { 
   sortOutput: true,
   declaration: true,
-  outFile: 'LSL.merged.js',
+  outDir: PATHS.build,
   typescript: require('typescript')
 });
  
@@ -72,7 +72,7 @@ gulp.task('scripts:dev', function() {
   return merge([
     tsResult.js
       .pipe(sourcemaps.write())
-      .pipe(gulp.dest('.'))
+      .pipe(gulp.dest('./' + PATHS.build + '/'))
   ]);
 });
 gulp.task('scripts:dev:watch', ['scripts:dev'], function () {
@@ -95,13 +95,13 @@ gulp.task('clean:dev', function (cb) {
  */
 gulp.task('test', ['scripts:dev'], function (cb) {
   gulp.src([
-    PATHS.src + '/**/*.js',
+    PATHS.build + '/**/*.js',
     '!' + PATHS.src + '/polyfills/*'
   ])
     .pipe(istanbul())
     .pipe(istanbul.hookRequire())
     .on('finish', function () {
-      gulp.src(PATHS.test + '/**/*.js')
+      gulp.src(PATHS.build + '/' + PATHS.test + '/**/*.js')
         .pipe(mocha({
           reporter: 'spec'
         }))

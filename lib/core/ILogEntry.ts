@@ -1,19 +1,19 @@
-module LSL {
+import {LogLevel} from './LogLevel';
+
+/**
+ * Represents an entry in an application log.
+ */
+export interface ILogEntry {
   /**
-   * Represents an entry in an application log.
+   * The time the log entry was created.
    */
-  export interface ILogEntry {
-    /**
-     * The time the log entry was created.
-     */
-    time: Date;
-    /**
-     * The log message.
-     */
-    message: string;
-    /**
-     * The log level
-     */
-    level: LogLevel;
-  }
+  time: Date;
+  /**
+   * The log message.
+   */
+  message: string;
+  /**
+   * The log level
+   */
+  level: LogLevel;
 }

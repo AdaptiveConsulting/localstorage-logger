@@ -1,12 +1,12 @@
-module LSL {
+import {ILogEntry} from '../core/ILogEntry';
+
+/**
+ * Interface for formatting log entries for presentation.
+ */
+export interface ILogEntryFormatter {
   /**
-   * Interface for formatting log entries for presentation.
+   * Takes a log entry and returns a formatted string.
+   * @param entry The log entry
    */
-  export interface ILogEntryFormatter {
-    /**
-     * Takes a log entry and returns a formatted string.
-     * @param entry The log entry
-     */
-    format(entry: ILogEntry) : string;
-  }
+  format(entry: ILogEntry) : string;
 }

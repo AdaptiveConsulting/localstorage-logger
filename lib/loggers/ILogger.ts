@@ -1,12 +1,12 @@
-module LSL {
+import {ILogEntry} from '../core/ILogEntry';
+
+/**
+ * Interface for logging individual log entries.
+ */
+export interface ILogger {
   /**
-   * Interface for logging individual log entries.
+   * Logs a log entry.
+   * @param entry The log entry
    */
-  export interface ILogger {
-    /**
-     * Logs a log entry.
-     * @param entry The log entry
-     */
-    log(entry: ILogEntry);
-  }
+  log(entry: ILogEntry);
 }
