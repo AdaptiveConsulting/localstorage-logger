@@ -1,6 +1,6 @@
 {
   "name": "localstorage-logger",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A rolling logger that logs to local storage",
   "typescript": {
     "definition": "build/localstorage-logger.d.ts"
