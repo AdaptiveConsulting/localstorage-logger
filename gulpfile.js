@@ -42,6 +42,12 @@ gulp.task('add', ['default'], function(){
 });
  
 /**
+ * Defintions files
+ */
+gulp.task('definitions', shell.task([
+  'node scripts/dts-bundle.js'
+]));/**
+
  * Dev tasks
  */
 gulp.task('tsd:install', function (callback) {
@@ -144,6 +150,7 @@ gulp.task('default', function (cb) {
   runSequence(
     'ci',
     'scripts:prod',
+    'definitions',
     cb
   );
 });
