@@ -15,8 +15,6 @@ export class Bookkeeper<T> {
    * Creates a new Bookkeeper for a queue. It should be initialized using reset method.
    */
   constructor(private _config: IQueueConfiguration) {
-    this._added = [];
-    this._removed = [];
   }
 
   /**
@@ -44,7 +42,7 @@ export class Bookkeeper<T> {
     this._added = [];
     this._removed = [];
     const serializedInfo = localStorage.getItem(this._config.keyPrefix);
-    if (serializedInfo === undefined) {
+    if (serializedInfo === null) {
       this._info = {
         sizeInBytes: 0,
         startIndex: 0,
@@ -60,7 +58,7 @@ export class Bookkeeper<T> {
    * Returns true if the queue has no elements.
    */
   isEmpty() {
-    return this._info.sizeInBytes > 0;
+    return this._info.sizeInBytes === 0;
   }
 
   /**
