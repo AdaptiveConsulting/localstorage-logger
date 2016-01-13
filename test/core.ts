@@ -1,8 +1,5 @@
 /// <reference path="../lib//all.d.ts" />
 
-import * as chai from 'chai';
-import * as sinon from 'sinon';
-
 let expect = chai.expect;
 
 describe('Local storage queue', function() {
@@ -19,7 +16,7 @@ describe('Local storage queue', function() {
     lib = null;
   });
   
- // it ('should be defined', () => {
- //   expect(true).to.eq(false);
- // });
+  it ('should be defined', () => {
+    expect(true).to.eq(true);
+  });
 });

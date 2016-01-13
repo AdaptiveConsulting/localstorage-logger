@@ -8,13 +8,12 @@ var gulp        = require('gulp'),
     bump        = require('gulp-bump'),
     tag_version = require('gulp-tag-version'),
     filter      = require('gulp-filter'),
-    mocha       = require('gulp-mocha'),
     del         = require('del'),
     runSequence = require('run-sequence'),
     tsd         = require('gulp-tsd'),
     nodemon     = require('gulp-nodemon'),
     shell       = require('gulp-shell'),
-    istanbul    = require('gulp-istanbul');
+    karma       = require('karma');
 
 require('git-guppy')(gulp);
     
@@ -94,20 +93,12 @@ gulp.task('clean:dev', function (cb) {
  * Tests tasks
  */
 gulp.task('test', ['scripts:dev'], function (cb) {
-  gulp.src([
-    PATHS.test + '/**/*.js',
-    '!' + PATHS.src + '/polyfills/*'
-  ])
-    .pipe(istanbul())
-    .pipe(istanbul.hookRequire())
-    .on('finish', function () {
-      gulp.src(PATHS.test + '/**/*.js')
-        .pipe(mocha({
-          reporter: 'spec'
-        }))
-        .pipe(istanbul.writeReports()) // Creating the reports after tests ran
-        .on('end', cb);
-    });
+  karma.server.start({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: true
+  }, function(exitCode) {
+    cb(exitCode === 0 ? undefined : 'There were test failures.');
+  });
 });
 
 gulp.task('test:watch', ['test'], function() {
