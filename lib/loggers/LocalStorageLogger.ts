@@ -35,4 +35,13 @@ export class LocalStorageLogger implements ILogger {
       this._nextLogger.log(entry);
     }
   }
+
+  /**
+   * Returns all log entries that are still held in local storage.
+   */
+  allEntries() : Array<ILogEntry> {
+    const entries = new Array<ILogEntry>();
+    this._queue.iterate(entry => entries.push(entry));
+    return entries;
+  }
 }

@@ -7,7 +7,7 @@ export interface ILogEntry {
   /**
    * The time the log entry was created.
    */
-  time: Date;
+  time: string;
   /**
    * The log message.
    */

@@ -20,7 +20,7 @@ export class ConsoleLogger implements ILogger {
    */
   log(entry: ILogEntry) {
     const formattedMessage = this._formatter.format(entry);
-    console.log(entry);
+    console.log(formattedMessage);
     this._nextLogger.log(entry);
   }
 }

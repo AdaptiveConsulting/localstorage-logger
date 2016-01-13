@@ -1,3 +1,4 @@
+import {LogLevel} from '../core/LogLevel';
 import {ILogEntry} from '../core/ILogEntry';
 import {ILogEntryFormatter} from './ILogEntryFormatter';
 
@@ -10,6 +11,6 @@ export class DefaultFormatter implements ILogEntryFormatter {
    * @param entry The log entry
    */
   format(entry: ILogEntry) : string{
-    return `[${entry.time}] [${entry.level}] ${entry.message}`;
+    return `[${entry.time}] [${LogLevel[entry.level]}] ${entry.message}`;
   }
 }

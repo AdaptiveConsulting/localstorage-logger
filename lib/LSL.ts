@@ -7,3 +7,5 @@ export {ConsoleLogger} from './loggers/ConsoleLogger';
 export {NullLogger} from './loggers/NullLogger';
 
 export {DefaultFormatter} from './formatters/DefaultFormatter';
+
+export {LogBootstrapper} from './LogBootstrapper';
