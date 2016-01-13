@@ -19,7 +19,7 @@ describe('Local storage queue', function() {
     lib = null;
   });
   
-  //it ('should be defined', () => {
-  //  expect(lib).to.be.ok;
-  //});
+ // it ('should be defined', () => {
+ //   expect(true).to.eq(false);
+ // });
 });

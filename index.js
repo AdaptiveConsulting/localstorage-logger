@@ -1,1 +1,1 @@
-module.exports = require('./build/lib/LSL.js');
+module.exports = require('./build/LSL.js');

@@ -72,7 +72,7 @@ gulp.task('scripts:dev', function() {
   return merge([
     tsResult.js
       .pipe(sourcemaps.write())
-      .pipe(gulp.dest('./' + PATHS.build + '/'))
+      .pipe(gulp.dest('.'))
   ]);
 });
 gulp.task('scripts:dev:watch', ['scripts:dev'], function () {
@@ -95,13 +95,13 @@ gulp.task('clean:dev', function (cb) {
  */
 gulp.task('test', ['scripts:dev'], function (cb) {
   gulp.src([
-    PATHS.build + '/**/*.js',
+    PATHS.test + '/**/*.js',
     '!' + PATHS.src + '/polyfills/*'
   ])
     .pipe(istanbul())
     .pipe(istanbul.hookRequire())
     .on('finish', function () {
-      gulp.src(PATHS.build + '/' + PATHS.test + '/**/*.js')
+      gulp.src(PATHS.test + '/**/*.js')
         .pipe(mocha({
           reporter: 'spec'
         }))
