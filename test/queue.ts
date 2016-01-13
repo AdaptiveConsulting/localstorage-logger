@@ -93,4 +93,11 @@ describe('Local storage queue', function() {
     // Assert
     expect(sut.isEmpty()).to.be.true;
   });
+
+  it('should throw when an item is enqueued that is too large to fit', () => {
+    // Arrange 
+    const tooLargeItem = new Array(MAX_SIZE_IN_BYTES).map((_, i) => 'x').join();
+    // Act + Assert
+    expect(() => sut.enqueue(tooLargeItem)).to.throw;
+  });
 });
