@@ -23,9 +23,9 @@ export class LogBootstrapper {
     const localStorageLogChain = new LocalStorageLogger(config, consoleLogChain);
     // Writes a message of a given log level to the start of the chain
     const write = (level, args: any[]) => {
+      const time = this._timestampProvider().toISOString();
       const jsonMessage = JSON.stringify(args);
       const jsonMessageWithoutBrackets = jsonMessage.slice(1, jsonMessage.length - 1);
-      const time = this._timestampProvider().toISOString();
       localStorageLogChain.log({
         level, time, message: jsonMessageWithoutBrackets
       });

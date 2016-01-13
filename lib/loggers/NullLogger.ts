@@ -5,11 +5,6 @@ import {ILogger} from './ILogger';
  */
 export class NullLogger implements ILogger {
   /**
-   * Constructs a no-op logger.
-   */
-  constructor() { }
-
-  /**
    * No-op
    */
   log(entry) {

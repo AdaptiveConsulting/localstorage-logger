@@ -27,7 +27,6 @@ export class LocalStorageLogger implements ILogger {
    */
   log(entry: ILogEntry) {
     try {
-      const time = new Date();
       this._queue.enqueue(entry);
     } catch (error) {
       console.error('Failed to log to local storage.', error);

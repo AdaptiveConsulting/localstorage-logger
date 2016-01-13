@@ -9,6 +9,9 @@ declare module 'LSL' {
     export { NullLogger } from '__LSL/loggers/NullLogger';
     export { DefaultFormatter } from '__LSL/formatters/DefaultFormatter';
     export { LogBootstrapper } from '__LSL/LogBootstrapper';
+    import { ILocalStorageLoggerConfiguration } from '__LSL/loggers/ILocalStorageLoggerConfiguration';
+    import { ILog } from '__LSL/ILog';
+    export default function (config: ILocalStorageLoggerConfiguration): ILog;
 }
 
 declare module '__LSL/queue/IQueueConfiguration' {
@@ -135,10 +138,6 @@ declare module '__LSL/loggers/NullLogger' {
         */
     export class NullLogger implements ILogger {
             /**
-                * Constructs a no-op logger.
-                */
-            constructor();
-            /**
                 * No-op
                 */
             log(entry: any): void;
@@ -172,6 +171,19 @@ declare module '__LSL/LogBootstrapper' {
                 * Returns a logging interface that has been set up with default loggers and formatters.
                 */
             bootstrap(config: ILocalStorageLoggerConfiguration): ILog;
+    }
+}
+
+declare module '__LSL/ILog' {
+    /**
+      * Allows logging and exporting of the log.
+      */
+    export interface ILog {
+        debug(...args: any[]): any;
+        info(...args: any[]): any;
+        warn(...args: any[]): any;
+        error(...args: any[]): any;
+        exportToArray(): string[];
     }
 }
 
@@ -221,19 +233,6 @@ declare module '__LSL/formatters/ILogEntryFormatter' {
                 * @param entry The log entry
                 */
             format(entry: ILogEntry): string;
-    }
-}
-
-declare module '__LSL/ILog' {
-    /**
-      * Allows logging and exporting of the log.
-      */
-    export interface ILog {
-        debug(...args: any[]): any;
-        info(...args: any[]): any;
-        warn(...args: any[]): any;
-        error(...args: any[]): any;
-        exportToArray(): string[];
     }
 }
 
